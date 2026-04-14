@@ -15,7 +15,7 @@ interface VideoConverterProps {
 
 const FORMATS = [
   { value: 'mp4', label: 'MP4 (H.264)', description: '兼容性最好' },
-  { value: 'webm', label: 'WebM (VP9)', description: 'Web 优化' },
+  { value: 'webm', label: 'WebM (H.264)', description: 'Web 优化' },
   { value: 'mkv', label: 'MKV', description: '高质量' },
 ]
 

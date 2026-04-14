@@ -152,10 +152,8 @@ export function useVideoProcessor() {
       // 构建 FFmpeg 参数
       const args: string[] = ['-i', inputFile.name]
       
-      // 对于大文件，限制内存使用
-      if (inputFile.size > 100 * 1024 * 1024) {
-        args.push('-threads', '1')
-      }
+      // 限制线程和内存使用
+      args.push('-threads', '1', '-mem_limit', '256M')
       
       // 视频编码设置
       if (outputFormat === 'mp4') {
@@ -167,22 +165,19 @@ export function useVideoProcessor() {
           '-movflags', '+faststart'
         )
       } else if (outputFormat === 'webm') {
+        // WebM 使用 H.264 替代不稳定的 VP9
         args.push(
-          '-c:v', 'libvpx-vp9',
+          '-c:v', 'libx264',
+          '-preset', preset,
           '-crf', crf,
-          '-b:v', '0',
-          '-deadline', quality === 'high' ? 'good' : 'realtime'
+          '-pix_fmt', 'yuv420p'
         )
       } else {
         args.push('-c:v', 'copy')
       }
       
       // 音频编码
-      if (outputFormat === 'webm') {
-        args.push('-c:a', 'libopus', '-b:a', '128k')
-      } else {
-        args.push('-c:a', 'aac', '-b:a', '128k')
-      }
+      args.push('-c:a', 'aac', '-b:a', '128k')
       
       // 输出文件
       args.push(outputName)
