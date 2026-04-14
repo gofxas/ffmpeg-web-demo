@@ -6,7 +6,7 @@ import { Progress } from '@/components/ui/progress'
 import { Select } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { VideoUploader } from '@/components/VideoUploader'
-import { useVideoProcessor, type VideoFile, type ProcessingTask } from '@/hooks/useVideoProcessor'
+import { useVideoProcessor, type VideoFile } from '@/hooks/useVideoProcessor'
 
 interface BatchTask {
   id: string

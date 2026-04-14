@@ -14,7 +14,7 @@ interface VideoProcessorProps {
 }
 
 export function VideoProcessor({ video, onReset }: VideoProcessorProps) {
-  const { trimVideo, convertVideo, loaded, loading, ffmpegProgress } = useVideoProcessor()
+  const { trimVideo, convertVideo, loaded, ffmpegProgress } = useVideoProcessor()
   const [startTime, setStartTime] = useState(0)
   const [endTime, setEndTime] = useState(video.duration || 10)
   const [processing, setProcessing] = useState(false)
