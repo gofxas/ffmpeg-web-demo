@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { Navbar } from '@/components/Navbar'
+import { PWAInstallPrompt } from '@/components/PWAInstallPrompt'
 import { Home } from '@/pages/Home'
 import { VideoProcess } from '@/pages/VideoProcess'
 import { BatchProcess } from '@/pages/BatchProcess'
@@ -15,6 +16,7 @@ function App() {
           <Route path="/batch" element={<BatchProcess />} />
         </Routes>
       </main>
+      <PWAInstallPrompt />
     </div>
   )
 }
